@@ -153,6 +153,20 @@ docker run --name pyspark2 -v /home/david/programming/ApacheSpark/code/:/home/jo
 
 ## Funciones Pyspark
 
+0. Crear un pyspark dataframe desde un pandas df
+1. 
+Si tenemos que crear un pyspark dataframe de un pandas DF es importante que el pandas_DF tenga todos los campos como string y q los registros q no tengan datos los sustituyamos por un espacio vacío, si no cuando casteemos el DF a pyspark nos dará el error de 
+
+Can not merge type <class 'pyspark.sql.types.StringType'> and <class 'pyspark.sql.types.DoubleType'>
+
+```python
+pd_entrada = pd.read_csv('entrada.csv', sep='\t', dtype=str)
+pd_entrada = pd_entrada.fillna(' ')
+df_entrada = spark.createDataFrame(pd_entrada)
+
+```
+
+
 1. `F.regexp_replace()`
 
 Esta función nos permite buscar un patrón en los datos de cada registro de una columna concreta y replazarlos por otro valor.
