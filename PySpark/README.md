@@ -192,5 +192,29 @@ df_cata_cntrts_0_100_DATIO_formated    = df_cata_cntrts_0_100_DATIO_formated.wit
 
 ```
 
+Si quisiera renombrar los campos de un df, por ejemplo eliminar todos los espacios en blanco por delante y por detrás
 
+```python
+
+# las cabeceras de las tablas tienen espacios en blanco así q tengo q renombrarlas eliminando esos espacios
+
+headers_entrada = df_entrada.columns
+headers_entrada_update = list(map(lambda item : item.strip(),headers_entrada))
+
+headers_salida = df_salida.columns
+headers_salida_update = list(map(lambda item : item.strip(),headers_salida))
+
+headers_trrascon = df_trrascon.columns
+headers_trrascon_update = list(map(lambda item : item.strip(),headers_trrascon))
+
+df_entrada = reduce(lambda df_entrada,idx: df_entrada.withColumnRenamed(headers_entrada[idx],headers_entrada_update[idx])  ,range(len(headers_entrada)),df_entrada  )
+
+df_salida = reduce(lambda df_salida,idx: df_salida.withColumnRenamed(headers_salida[idx],headers_salida_update[idx])  ,range(len(headers_salida)),df_salida  )
+
+df_trrascon = reduce(lambda df_trrascon,idx: df_trrascon.withColumnRenamed(headers_trrascon[idx],headers_trrascon_update[idx])  ,range(len(headers_trrascon)),df_trrascon  )
+
+
+
+
+```
 
