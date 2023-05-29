@@ -213,8 +213,11 @@ df_salida = reduce(lambda df_salida,idx: df_salida.withColumnRenamed(headers_sal
 
 df_trrascon = reduce(lambda df_trrascon,idx: df_trrascon.withColumnRenamed(headers_trrascon[idx],headers_trrascon_update[idx])  ,range(len(headers_trrascon)),df_trrascon  )
 
-
-
-
 ```
+si queremos rellenar por ejemplo con '0' los datos de ciertos campos
 
+```python
+df_historico_men2010= df_historico_men2010.withColumn("GI011_COD_CBANCO2",F.lpad("GI011_COD_CBANCO",4,"0"))
+
+# 4 hace referencia al total de caracteres que tendrá ese campo, si el dato ocupa 2 caracteres (por ejemplo 23) rellena con 0 hasta llegar a 4 caracteres (0023)
+```
