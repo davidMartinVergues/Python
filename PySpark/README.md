@@ -221,3 +221,13 @@ df_historico_men2010= df_historico_men2010.withColumn("GI011_COD_CBANCO2",F.lpad
 
 # 4 hace referencia al total de caracteres que tendrá ese campo, si el dato ocupa 2 caracteres (por ejemplo 23) rellena con 0 hasta llegar a 4 caracteres (0023)
 ```
+
+Función para comprobar q dos DF son iguales
+```python
+# utils
+def are_equals(df1,df2):
+    if df1.subtract(df2).rdd.isEmpty():
+        return df2.subtract(df1).rdd.isEmpty()
+    return False
+```
+
