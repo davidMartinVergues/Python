@@ -230,4 +230,9 @@ def are_equals(df1,df2):
         return df2.subtract(df1).rdd.isEmpty()
     return False
 ```
+# código para visualizar los DF con scroll horizontal 
 
+```python
+from IPython.display import display, HTML
+display(HTML("<style>pre { white-space: pre !important; }</style>"))
+```
