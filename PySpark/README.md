@@ -153,8 +153,9 @@ docker run --name pyspark2 -v /home/david/programming/ApacheSpark/code/:/home/jo
 
 ## Funciones Pyspark
 
-0. Crear un pyspark dataframe desde un pandas df
-1. 
+
+1. Crear un pyspark dataframe desde un pandas df
+   
 Si tenemos que crear un pyspark dataframe de un pandas DF es importante que el pandas_DF tenga todos los campos como string y q los registros q no tengan datos los sustituyamos por un espacio vacío, si no cuando casteemos el DF a pyspark nos dará el error de 
 
 Can not merge type <class 'pyspark.sql.types.StringType'> and <class 'pyspark.sql.types.DoubleType'>
@@ -167,7 +168,7 @@ df_entrada = spark.createDataFrame(pd_entrada)
 ```
 
 
-1. `F.regexp_replace()`
+2. `F.regexp_replace()`
 
 Esta función nos permite buscar un patrón en los datos de cada registro de una columna concreta y replazarlos por otro valor.
 
@@ -230,6 +231,19 @@ def are_equals(df1,df2):
         return df2.subtract(df1).rdd.isEmpty()
     return False
 ```
+
+Función para buscar si en algún campo de la tabla hay Null
+
+```python
+df_salida_severidad.select([count( when(col(c).isNull(), c)).alias(c) for c in df_salida_severidad.columns]).show()
+```
+Código para saber si hay NaNs en algún campo
+
+```python
+df_salida_severidad.filter(isnan(col('repayment_months_number'))).show()
+```
+
+
 # código para visualizar los DF con scroll horizontal 
 
 ```python
