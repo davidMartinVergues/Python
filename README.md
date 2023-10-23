@@ -3295,6 +3295,13 @@ with open('my_new_file2.txt', 'w', encoding="utf-8") as f:
   f.write('i created this file')
 ```
 
+### Guardar un dictionary en un fichero
+
+```python
+with open('amz_prod_.json', 'w', encoding="utf-8") as f:
+  json.dump(product_list,f)
+```
+
 ## File location
 
 Crear el fichero en una localización concreta
